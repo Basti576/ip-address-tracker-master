@@ -1,0 +1,99 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin:0;
+}
+
+.attribution { 
+    font-size: 11px; text-align: center; 
+}
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
+
+
+body{
+    background: rgb(172, 172, 172);
+    min-height: 100vh;
+    min-width: 100vw;
+  
+}
+
+header{
+    background: red;
+    grid-area: Header;
+    height: 100%;
+    width: auto;
+    background-image: url("../images/pattern-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    text-align: center;
+}
+
+.header-heading{
+    margin-top:2.5rem;
+    color:white;
+    font-size: 3rem;
+}
+
+
+.container{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    gap:0px 0px;
+    grid-template-areas:
+    "Header Header Header Header"
+    "main-content main-content main-content main-content"
+    "main-content main-content main-content main-content";
+    justify-content: center;
+    align-content: center;
+    align-items:center;
+    height:100vh;
+    width: 100vw;
+}
+
+.content-wrapper{
+    grid-area: main-content;
+    background: rgb(221, 221, 221);
+    height:100%;
+}
+
+
+.info-wrapper{
+    background: white;
+    border-radius: 0.5rem;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width:75%;
+    margin:auto;
+    padding:2rem;
+}
+
+.info-heading{
+    text-transform:uppercase;
+    color:rgb(145, 145, 145);
+    font-weight: bold;
+}
+
+.info-bold{
+    font-weight: bold;
+    margin-top:1rem;
+    font-size: 2rem;
+}
+
+
+.ip-info, .location-info, .timezone-info{
+    border-right: 1px solid gray;
+ 
+    float: left;
+}
+
+.ip-info, .location-info, .timezone-info, .lsp-info{
+   width:100%;
+   margin-left: 2rem;
+}
+
