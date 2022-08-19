@@ -16,11 +16,11 @@ body{
     background: rgb(172, 172, 172);
     min-height: 100vh;
     min-width: 100vw;
+    font-family: 'DM Sans', sans-serif;
   
 }
 
 header{
-    background: red;
     grid-area: Header;
     height: 100%;
     width: auto;
@@ -69,13 +69,54 @@ header{
     flex-direction: row;
     justify-content: space-around;
     width:75%;
-    margin:auto;
+    margin: -4rem auto 0 auto;
     padding:2rem;
+    position: absolute;
+    z-index: 999;
+    left:0;
+    right:0;
+    -webkit-box-shadow: 0px 10px 15px 0px #989898; 
+    box-shadow: 0px 10px 15px 0px #989898;
+    transition: 0.5s;
+    
+}
+
+
+.search-form{
+    width:35%;
+    margin:auto;
+    display:flex;
+    flex-direction: row;
+}
+
+#search-button{
+    padding:1rem;
+    background-color: rgb(53, 53, 53);
+    color:white;
+    border:none;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    font-weight: bold;
+    font-size: 1.15rem;
+    transition: background-color 0.25s ease-in-out;
+}
+
+#search-button:hover{
+    background-color:black;
+    cursor:pointer;
+}
+
+#site-search{
+    width:100%;
+    padding:1rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border:none;
 }
 
 .info-heading{
     text-transform:uppercase;
-    color:rgb(145, 145, 145);
+    color:rgb(197, 197, 197);
     font-weight: bold;
 }
 
@@ -97,3 +138,8 @@ header{
    margin-left: 2rem;
 }
 
+
+#map {
+     height: 100%; 
+     width:100%;
+    }

@@ -6,6 +6,16 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+  integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+  crossorigin=""/>
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+ integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+ crossorigin=""></script>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet"> 
   <title>Frontend Mentor | IP Address Tracker</title>
 </head>
 <body>
@@ -13,7 +23,12 @@
   <div class="container">
     <header>
       <h1 class="header-heading">IP Address Tracker</h1>
-      <div class="search-form"></div>
+      <div class="search-form">
+       
+        <input type="search" id="site-search" onsubmit="searchIp()" placeholder="Search for any IP Address or Domain">
+        <button type="submit" id="search-button" onclick="searchIp()">&#62;</button>
+      
+      </div>
     </header>
 
 
@@ -22,23 +37,23 @@
     <div class="info-wrapper">
       <div class="ip-info">
         <p class="info-heading">IP Address</p>
-        <p class="info-bold">123</p>
+        <p id="ip-address-content" class="info-bold"></p>
       </div>
       <div class="location-info">
         <p class="info-heading">Location</p>
-        <p class="info-bold">123</p>
+        <p id="location-content" class="info-bold"></p>
       </div>
       <div class="timezone-info">
         <p class="info-heading">Timezone</p>
-        <p class="info-bold">123</p>
+        <p id="timezone-content" class="info-bold"></p>
       </div>
       <div class="lsp-info">
         <p class="info-heading">ISP</p>
-        <p class="info-bold">123</p>
+        <p id="lsp-content" class="info-bold"></p>
       </div>
     </div>
 
-    <div class="map-wrapper">
+    <div id="map" class="map-wrapper">
 
     </div>
 
@@ -59,5 +74,8 @@
   </div>
 </footer>
 -->
+
+<script src="./js/script.js"></script>
+
 </body>
 </html>
