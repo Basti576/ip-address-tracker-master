@@ -114,6 +114,10 @@ header{
     border:none;
 }
 
+#site-search:hover{
+    cursor: pointer;
+}
+
 .info-heading{
     text-transform:uppercase;
     color:rgb(197, 197, 197);

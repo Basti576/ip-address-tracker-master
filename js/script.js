@@ -17,6 +17,12 @@ input.addEventListener("keypress", function(event){
 });
 
 
+
+//Set initial ip with own Ip Adress
+function getIP(json) {
+    getIpInfo(json.ip);
+  }
+
 //MAP Script
 var map = L.map('map').setView([51.505, -0.09], 13);
 
@@ -46,17 +52,24 @@ const url= "https://geo.ipify.org/api/v2/country?apiKey=at_5bjtmEoKTG7ErbAWHLqcv
 fetch(url)
 .then((resp)=> resp.json())
 .then(function(data){
-    //console.log(data);
+    console.log(data);
     //console.log(ipBox);
     ipBox.innerHTML = data.ip;
-    locationBox.innerHTML = data.location.country + "" + data.location.region;
+    locationBox.innerHTML = data.location.country + " " + data.location.region;
     timezoneBox.innerHTML = data.location.timezone;
     lspBox.innerHTML = data.isp;
+})
+.then(function(){
+    L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+    .openPopup();
 })
 .catch(function(){
     console.error("ERROR WHILE FETCHING API");
 });
 }
+
+
 
 
 
