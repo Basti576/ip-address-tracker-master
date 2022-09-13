@@ -7,6 +7,7 @@ let timezoneBox= document.getElementById("timezone-content");
 let lspBox= document.getElementById("lsp-content");
 
 
+
 //KEY
 let input = document.getElementById("site-search");
 input.addEventListener("keypress", function(event){
@@ -19,15 +20,27 @@ input.addEventListener("keypress", function(event){
 
 
 //Set initial ip with own Ip Adress
+window.addEventListener('load', ()=>{
+    getInitialIp();
+})
 
 
-//MAP Script
-var map = L.map('map').setView([51.505, -0.09], 13);
+
+
+
+//Set Map Script
+function setMap(lat, lng, ip){
+var map = L.map('map').setView([lat, lng], 13);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
 }).addTo(map);
+L.marker([lat, lng]).addTo(map)
+.bindPopup(ip)
+.openPopup();
+}
+
 
 
 //Function searchIP
@@ -40,13 +53,30 @@ function searchIp(){
 
 
 
+
 //Geolocation API
 
 function getIpInfo(ipAddress){
+    let input = String(ipAddress)
+    //Regex to check if IP or Domain
+    const regexEx=/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
+    console.log(ipAddress);
+  
+    
+    let url= "https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress="+input;
+    let regexCheck = regexEx.test(input);
+    console.log(regexCheck);
+    console.log(typeof String(input));
+    if(regexCheck == true){
+        //Valid IP -> IP search
+         url ="https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress="+input;
+    }
+    else{
+        //Not a valid Ip => Domain
+        url ="https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&domain="+input;
+    }
+    
 
-    let ip = ipAddress;
-
-const url= "https://geo.ipify.org/api/v2/country?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress="+ip;
 fetch(url)
 .then((resp)=> resp.json())
 .then(function(data){
@@ -56,17 +86,38 @@ fetch(url)
     locationBox.innerHTML = data.location.country + " " + data.location.region;
     timezoneBox.innerHTML = data.location.timezone;
     lspBox.innerHTML = data.isp;
-  
+    setMap(data.location.lat, data.location.lng, data.ip); 
 })
-.then(function(){
-    L.marker([51.5, -0.09]).addTo(map)
-    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    .openPopup();
+.catch(function(){
     console.error("ERROR WHILE FETCHING API");
 });
 }
 
 
+
+
+
+function getInitialIp(){
+
+   
+
+    let url= "https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress";
+   
+fetch(url)
+.then((resp)=> resp.json())
+.then(function(data){
+    console.log(data);
+    //console.log(ipBox);
+    ipBox.innerHTML = data.ip;
+    locationBox.innerHTML = data.location.country + " " + data.location.region;
+    timezoneBox.innerHTML = data.location.timezone;
+    lspBox.innerHTML = data.isp;
+    setMap(data.location.lat, data.location.lng, data.ip); 
+})
+.catch(function(){
+    console.error("ERROR WHILE FETCHING API");
+});
+}
 
 
 

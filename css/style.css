@@ -147,3 +147,36 @@ header{
      height: 100%; 
      width:100%;
     }
+
+
+    /*---RESPONSIVE STYLING---*/
+
+    @media only screen and (max-width:768px){
+        .header-heading{
+            width:75%;
+            font-size:2rem;
+            text-align: center;
+            margin:1.25rem auto 1.25rem auto;
+        }
+        .search-form{
+            width:75%;
+        }
+        .info-wrapper{
+            flex-direction: column;
+            padding:0;
+            text-align: center;
+            margin-top:-8rem;
+            border-radius: 1rem;
+        }
+        .ip-info,.location-info, .timezone-info, .lsp-info{
+            margin-left: 0rem;
+            border-right: none;
+            margin-top: 1rem;
+            margin-bottom:1rem;
+        }
+
+        #ip-address-content, #location-content, #timezone-content, #lsp-content{
+            margin-top:0;
+            font-size: 1.25rem;
+        } 
+    }
