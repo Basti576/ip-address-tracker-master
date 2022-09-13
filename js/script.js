@@ -19,9 +19,7 @@ input.addEventListener("keypress", function(event){
 
 
 //Set initial ip with own Ip Adress
-function getIP(json) {
-    getIpInfo(json.ip);
-  }
+
 
 //MAP Script
 var map = L.map('map').setView([51.505, -0.09], 13);
@@ -58,13 +56,12 @@ fetch(url)
     locationBox.innerHTML = data.location.country + " " + data.location.region;
     timezoneBox.innerHTML = data.location.timezone;
     lspBox.innerHTML = data.isp;
+  
 })
 .then(function(){
     L.marker([51.5, -0.09]).addTo(map)
     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
     .openPopup();
-})
-.catch(function(){
     console.error("ERROR WHILE FETCHING API");
 });
 }
