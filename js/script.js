@@ -46,7 +46,6 @@ L.marker([lat, lng]).addTo(map)
 //Function searchIP
 function searchIp(){
     let searchContent = document.getElementById("site-search").value;
-    //console.log("Search for IP: "+searchContent);
     getIpInfo(searchContent);
 
 }
@@ -81,11 +80,13 @@ fetch(url)
 .then((resp)=> resp.json())
 .then(function(data){
     console.log(data);
-    //console.log(ipBox);
     ipBox.innerHTML = data.ip;
     locationBox.innerHTML = data.location.country + " " + data.location.region;
     timezoneBox.innerHTML = data.location.timezone;
     lspBox.innerHTML = data.isp;
+    console.log(data.location.lat);
+    console.log(data.location.lng);
+   
     setMap(data.location.lat, data.location.lng, data.ip); 
 })
 .catch(function(){

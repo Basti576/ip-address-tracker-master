@@ -70,7 +70,6 @@ header{
     justify-content: space-around;
     width:75%;
     margin: -4rem auto 0 auto;
-    padding:2rem;
     position: absolute;
     z-index: 999;
     left:0;
@@ -133,13 +132,14 @@ header{
 
 .ip-info, .location-info, .timezone-info{
     border-right: 1px solid gray;
- 
     float: left;
 }
 
 .ip-info, .location-info, .timezone-info, .lsp-info{
    width:100%;
-   margin-left: 2rem;
+   text-align:center;
+      
+   margin: 1rem 0 1rem 0;
 }
 
 
@@ -150,6 +150,18 @@ header{
 
 
     /*---RESPONSIVE STYLING---*/
+
+
+
+
+
+    @media only screen and (max-width:1280px){
+        .ip-info, .lsp-info, .location-info, .timezone-info{
+            transition: all 1s linear;
+            margin-left:0rem;
+            text-align:center;
+        }
+    }
 
     @media only screen and (max-width:768px){
         .header-heading{
