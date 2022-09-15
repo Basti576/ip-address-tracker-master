@@ -31,7 +31,20 @@ window.addEventListener('load', ()=>{
 //Set Map Script
 function setMap(lat, lng, ip){
 map = L.map('map').setView([lat, lng], 13);
-marker = L.marker([lat, lng]);
+
+//Marker Options
+let iconOptions={
+    iconUrl: "../images/icon-location.svg",
+    iconSize:[30,35]
+}
+let customIcon = L.icon(iconOptions);
+
+let markerOptions ={
+    clickable: true,
+    icon: customIcon
+}
+
+marker = new L.marker([lat, lng], markerOptions).addTo(map);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -88,10 +101,10 @@ fetch(url)
    
     updateMap(data.location.lat, data.location.lng, data.ip); 
 })
-/*.catch(function(){
+.catch(function(){
     console.error("ERROR WHILE FETCHING API");
 });
-*/
+
 }
 
 
@@ -122,7 +135,9 @@ fetch(url)
 
 
 function updateMap(lat, lng, ip){
+    console.log("marker update");
    marker.setLatLng([lat, lng]).update();
-   marker.bindPopup("Your IP is: "+ip).openPopup();
    map.flyTo([lat, lng], 13);
+   marker.addTo(map);
+   marker.bindPopup("Your IP is: "+ip).openPopup();
 }
