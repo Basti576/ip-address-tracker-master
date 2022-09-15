@@ -73,20 +73,17 @@ function getIpInfo(ipAddress){
     let input = String(ipAddress)
     //Regex to check if IP or Domain
     const regexEx=/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
-    console.log(ipAddress);
-    console.log("--GET INFO--");
-    
-    let url= "https://geo.ipify.org/api/v2/country,city?apiKey=&ipAddress="+input;
+  
+    let url= "https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress="+input;
     let regexCheck = regexEx.test(input);
-    console.log(regexCheck);
-    console.log(typeof String(input));
+  
     if(regexCheck == true){
         //Valid IP -> IP search
-         url ="https://geo.ipify.org/api/v2/country,city?apiKey=&ipAddress="+input;
+         url ="https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress="+input;
     }
     else{
         //Not a valid Ip => Domain
-        url ="https://geo.ipify.org/api/v2/country,city?apiKey=&domain="+input;
+        url ="https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&domain="+input;
     }
     
 
@@ -120,7 +117,7 @@ let url= "https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHL
 fetch(url)
 .then((resp)=> resp.json())
 .then(function(data){
-    console.log(data);
+   
     ipBox.innerHTML = data.ip;
     locationBox.innerHTML = data.location.country + " " + data.location.region;
     timezoneBox.innerHTML = data.location.timezone;
@@ -135,7 +132,7 @@ fetch(url)
 
 
 function updateMap(lat, lng, ip){
-    console.log("marker update");
+   
    marker.setLatLng([lat, lng]).update();
    map.flyTo([lat, lng], 13);
    marker.addTo(map);
