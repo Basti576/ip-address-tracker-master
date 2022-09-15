@@ -1,5 +1,3 @@
-
-
 //GLOBAL VARIABLES
 let ipBox= document.getElementById("ip-address-content");
 let locationBox= document.getElementById("location-content");
@@ -10,7 +8,7 @@ let map;
 
 
 
-//KEY
+//Key-Press
 let input = document.getElementById("site-search");
 input.addEventListener("keypress", function(event){
     if(event.key === "Enter"){
@@ -21,7 +19,7 @@ input.addEventListener("keypress", function(event){
 
 
 
-//Set initial ip with own Ip Adress
+//Set initial ip with own Ip Address
 window.addEventListener('load', ()=>{
     getInitialIp();
 })
@@ -90,9 +88,9 @@ fetch(url)
    
     updateMap(data.location.lat, data.location.lng, data.ip); 
 })
-/*.catch(function(){
+.catch(function(){
     console.error("ERROR WHILE FETCHING API");
-});*/
+});
 }
 
 
@@ -100,16 +98,12 @@ fetch(url)
 
 
 function getInitialIp(){
-
-   
-
     let url= "https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress";
    
 fetch(url)
 .then((resp)=> resp.json())
 .then(function(data){
     console.log(data);
-    //console.log(ipBox);
     ipBox.innerHTML = data.ip;
     locationBox.innerHTML = data.location.country + " " + data.location.region;
     timezoneBox.innerHTML = data.location.timezone;
