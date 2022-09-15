@@ -30,7 +30,11 @@ window.addEventListener('load', ()=>{
 
 //Set Map Script
 function setMap(lat, lng, ip){
-var map = L.map('map').setView([lat, lng], 13);
+let map = L.map('map').setView([lat, lng], 13);
+console.log("---- MAP----");
+console.log(lat);
+console.log(lng);
+console.log(ip);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -60,7 +64,7 @@ function getIpInfo(ipAddress){
     //Regex to check if IP or Domain
     const regexEx=/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
     console.log(ipAddress);
-  
+    console.log("--GET INFO--");
     
     let url= "https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress="+input;
     let regexCheck = regexEx.test(input);
@@ -84,14 +88,16 @@ fetch(url)
     locationBox.innerHTML = data.location.country + " " + data.location.region;
     timezoneBox.innerHTML = data.location.timezone;
     lspBox.innerHTML = data.isp;
-    console.log(data.location.lat);
-    console.log(data.location.lng);
    
-    setMap(data.location.lat, data.location.lng, data.ip); 
+    //setMap(data.location.lat, data.location.lng, data.ip); 
+    updateMarker(data.location.lat, data.location.lng, data.ip);
+    
+
 })
-.catch(function(){
+/*.catch(function(){
     console.error("ERROR WHILE FETCHING API");
 });
+*/
 }
 
 
@@ -102,7 +108,7 @@ function getInitialIp(){
 
    
 
-    let url= "https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress";
+let url= "https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress";
    
 fetch(url)
 .then((resp)=> resp.json())
@@ -122,3 +128,8 @@ fetch(url)
 
 
 
+function updateMarker(lat, lng){
+    L.marker([lat, lng]).addTo(map)
+.bindPopup(ip)
+.openPopup();
+}
