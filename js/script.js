@@ -31,13 +31,15 @@ window.addEventListener('load', ()=>{
 //Set Map Script
 function setMap(lat, lng, ip){
 map = L.map('map').setView([lat, lng], 13);
-marker = L.marker([lat, lng]).addTo(map);
+marker = L.marker([lat, lng]);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
 }).addTo(map);
 marker.bindPopup("Your IP is: "+ip).openPopup();
+
+
 }
 
 
