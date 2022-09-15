@@ -5,6 +5,8 @@ let ipBox= document.getElementById("ip-address-content");
 let locationBox= document.getElementById("location-content");
 let timezoneBox= document.getElementById("timezone-content");
 let lspBox= document.getElementById("lsp-content");
+let marker;
+let map;
 
 
 
@@ -30,15 +32,14 @@ window.addEventListener('load', ()=>{
 
 //Set Map Script
 function setMap(lat, lng, ip){
-var map = L.map('map').setView([lat, lng], 13);
+map = L.map('map').setView([lat, lng], 13);
+marker = L.marker([lat, lng]).addTo(map);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
 }).addTo(map);
-L.marker([lat, lng]).addTo(map)
-.bindPopup(ip)
-.openPopup();
+marker.bindPopup("Your IP is: "+ip).openPopup();
 }
 
 
@@ -87,11 +88,11 @@ fetch(url)
     console.log(data.location.lat);
     console.log(data.location.lng);
    
-    setMap(data.location.lat, data.location.lng, data.ip); 
+    updateMap(data.location.lat, data.location.lng, data.ip); 
 })
-.catch(function(){
+/*.catch(function(){
     console.error("ERROR WHILE FETCHING API");
-});
+});*/
 }
 
 
@@ -122,3 +123,8 @@ fetch(url)
 
 
 
+function updateMap(lat, lng, ip){
+   marker.setLatLng([lat, lng]).update();
+   marker.bindPopup("Your IP is: "+ip).openPopup();
+   map.flyTo([lat, lng], 13);
+}

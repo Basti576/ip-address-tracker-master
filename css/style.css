@@ -68,7 +68,7 @@ header{
     display:flex;
     flex-direction: row;
     justify-content: space-around;
-    width:75%;
+    max-width:90%;
     margin: -4rem auto 0 auto;
     position: absolute;
     z-index: 999;
