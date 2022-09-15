@@ -76,17 +76,17 @@ function getIpInfo(ipAddress){
     console.log(ipAddress);
     console.log("--GET INFO--");
     
-    let url= "https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress="+input;
+    let url= "https://geo.ipify.org/api/v2/country,city?apiKey=&ipAddress="+input;
     let regexCheck = regexEx.test(input);
     console.log(regexCheck);
     console.log(typeof String(input));
     if(regexCheck == true){
         //Valid IP -> IP search
-         url ="https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&ipAddress="+input;
+         url ="https://geo.ipify.org/api/v2/country,city?apiKey=&ipAddress="+input;
     }
     else{
         //Not a valid Ip => Domain
-        url ="https://geo.ipify.org/api/v2/country,city?apiKey=at_5bjtmEoKTG7ErbAWHLqcvEUfquebs&domain="+input;
+        url ="https://geo.ipify.org/api/v2/country,city?apiKey=&domain="+input;
     }
     
 
